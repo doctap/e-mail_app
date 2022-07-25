@@ -1,7 +1,6 @@
 import React from 'react';
 import Folder from '../folder/Folder';
 import { IMessage } from '../message/Message';
-import styles from './Menu.module.scss';
 
 interface IMenu {
 	folders: IFolder[];
@@ -16,7 +15,7 @@ export interface IFolder {
 
 export default function Menu(props: IMenu) {
 	return (
-		<div className={styles.menu}>
+		<>
 			{props.folders.map(folder =>
 				<Folder
 					key={folder.name}
@@ -25,6 +24,6 @@ export default function Menu(props: IMenu) {
 					requiredFolder={folder.requiredFolder}
 				/>
 			)}
-		</div>
+		</>
 	)
 }

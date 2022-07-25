@@ -3,38 +3,9 @@ import { IFolder } from "../components/menu/Menu";
 const date = new Date();
 const messageDate = [date.getMonth(), date.getDate(), date.getFullYear()].join('.').toString();
 
+
+
 export const folders: IFolder[] = [
-	{
-		name: 'Incoming',
-		requiredFolder: true,
-		messages: [
-			{
-				author: 'Vasili Nikiforov',
-				message: 'Hey girl, how is going?',
-				date: messageDate,
-			},
-			{
-				author: 'Jose Weber',
-				message: 'Hey girl, how is going?',
-				date: messageDate,
-			},
-			{
-				author: 'Vasili Nikiforov',
-				message: 'Hey girl, how is going?',
-				date: messageDate,
-			},
-			{
-				author: 'Kimberly Moreno',
-				message: 'Hey girl, how is going?',
-				date: messageDate,
-			},
-			{
-				author: 'Jonathan Marshall',
-				message: 'Hey girl, how is going?',
-				date: messageDate,
-			},
-		],
-	},
 	{
 		name: 'Outgoing',
 		requiredFolder: true,
@@ -62,6 +33,37 @@ export const folders: IFolder[] = [
 			{
 				author: 'Brian Stewart',
 				message: 'Hey boy, nice hairs😁',
+				date: messageDate,
+			},
+		],
+	},
+	{
+		name: 'Incoming',
+		requiredFolder: true,
+		messages: [
+			{
+				author: 'Vasili Nikiforov',
+				message: 'Hey girl, how is going?',
+				date: messageDate,
+			},
+			{
+				author: 'Jose Weber',
+				message: 'Hey girl, how is going?',
+				date: messageDate,
+			},
+			{
+				author: 'Vasili Nikiforov',
+				message: 'Hey girl, how is going?',
+				date: messageDate,
+			},
+			{
+				author: 'Kimberly Moreno',
+				message: 'Hey girl, how is going?',
+				date: messageDate,
+			},
+			{
+				author: 'Jonathan Marshall',
+				message: 'Hey girl, how is going?',
 				date: messageDate,
 			},
 		],
@@ -158,5 +160,5 @@ export const folders: IFolder[] = [
 				date: messageDate,
 			},
 		],
-	}
+	},
 ];

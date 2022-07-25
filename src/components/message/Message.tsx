@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Messages.module.scss';
+import styles from './Message.module.scss';
 
 export interface IMessage {
 	author: string;

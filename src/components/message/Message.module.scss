@@ -1,0 +1,22 @@
+.Messages {
+	width: 100%;
+	height: 2.5rem;
+
+	&>* {
+		border-bottom: 1px solid #000;
+	}
+
+	.author {
+		width: 10rem;
+		padding-left: .5rem;
+	}
+
+	.message {
+		padding-left: 1rem;
+	}
+
+	.date {
+		width: 7rem;
+		text-align: center;
+	}
+}

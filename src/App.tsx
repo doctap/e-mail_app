@@ -3,6 +3,7 @@ import ListMessages from './components/listMessages/ListMessages';
 import Menu from './components/menu/Menu';
 import { folders } from './server/Server';
 import styles from './App.module.scss';
+import FolderManager from './components/folderManager/FolderManager';
 
 function App() {
 
@@ -17,11 +18,16 @@ function App() {
 	return (
 		<div className={styles.App}>
 
-			<div className={styles.Menu}>
-				<Menu
-					folders={folders}
-					getCurrentFolderName={getFolder}
-				/>
+			<div className={styles.aside}>
+				<div className={styles.Menu}>
+					<Menu
+						folders={folders}
+						getCurrentFolderName={getFolder}
+					/>
+				</div>
+				<div className={styles.FolderManagementButton}>
+				<FolderManager />
+				</div>
 			</div>
 
 			<div className={styles.ListMessages}>
