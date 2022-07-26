@@ -1,48 +1,40 @@
 import React, { useState } from 'react';
-import FolderManagementButton from '../folderManagementButton/FolderManagementButton';
-import TextField from '../inputs/TextField';
+import { BtnTickVariants } from '../buttons/btnTick/BtnTick';
+import Button, { BtnVariants } from '../buttons/button/Button';
+import InputBtn from '../inputs/inputBtn/InputBtn';
 import styles from './FolderManager.module.scss';
 
+interface IFolderManager {
+	sendFolderName: (name: string) => void;
+}
 
+export default function FolderManager(props: IFolderManager) {
 
-export default function FolderManager() {
-
-	const [changeState, setChangeState] = useState(false);
-
-	const actionsHandler = (value: string) => {
-		if (value === 'create') setChangeState(!changeState);
-		if (value === 'delete') console.log('delete');
-	}
-
-	const getFolderName = (name: string) => {
-		console.log(name);
-	}
+	const [showInput, setShowInput] = useState(false);
 
 	return (
-		<form className={styles.folderManager}>
+		<div className={styles.folderManager}>
+
+			<div className={styles.controlButtons}>
+				<Button onClick={() => setShowInput(!showInput)} name='create' type='button' variant={BtnVariants.BtnText} />
+			</div>
 
 			<div className={styles.TextField}>
 				{
-					changeState
+					showInput
 						?
-						<TextField onChange={getFolderName} placeholder='Folder name' />
+						<InputBtn
+							onClick={props.sendFolderName}
+							placeholderInput='Folder name'
+							typeButton='submit'
+							typeInput='text'
+							variantBtn={BtnTickVariants.Add}
+						/>
 						:
-						'Folder Manager'
+						null
 				}
 			</div>
 
-			<div className={styles.controlButtons}>
-				<FolderManagementButton
-					type='submit'
-					action={changeState ? 'send' : 'create'}
-					onClick={actionsHandler}
-				/>
-				<FolderManagementButton
-					type='button'
-					action='delete'
-					onClick={actionsHandler}
-				/>
-			</div>
-		</form>
+		</div>
 	)
 }

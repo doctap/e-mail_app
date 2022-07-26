@@ -14,6 +14,7 @@ export interface IFolder {
 }
 
 export default function Menu(props: IMenu) {
+
 	return (
 		<>
 			{props.folders.map(folder =>

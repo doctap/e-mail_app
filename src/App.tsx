@@ -9,10 +9,27 @@ function App() {
 
 	const [messages, setMessages] = useState(folders[0].messages);
 
+	const [arrFolder, setArrFolder] = useState(folders);
+
+	const addFolder = (isFolderName: string) => {
+		if (isFolderName)
+			folders.push({
+				name: isFolderName,
+				requiredFolder: false,
+				messages: [
+					{
+						author: 'Norman Morales',
+						message: 'Hey bitch, nice hairs😁',
+						date: '234',
+					},
+				]
+			});
+		const copyFolders = folders.slice();
+		setArrFolder(copyFolders);
+	};
+
 	const getFolder = (isName: string) => {
-		folders.map(folder => {
-			if (folder.name === isName) setMessages(folder.messages);
-		});
+		folders.map(folder => folder.name === isName ? setMessages(folder.messages) : null)
 	}
 
 	return (
@@ -21,12 +38,12 @@ function App() {
 			<div className={styles.aside}>
 				<div className={styles.Menu}>
 					<Menu
-						folders={folders}
+						folders={arrFolder}
 						getCurrentFolderName={getFolder}
 					/>
 				</div>
 				<div className={styles.FolderManagementButton}>
-				<FolderManager />
+					<FolderManager sendFolderName={addFolder} />
 				</div>
 			</div>
 

@@ -1,0 +1,15 @@
+.inputBtn {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 100%;
+
+	.btnSubmit {
+		position: absolute;
+		right: 1px;
+		width: 2.50rem;
+		height: 100%;
+		border-radius: 4px;
+		overflow: hidden;
+	}
+}

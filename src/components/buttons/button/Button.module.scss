@@ -1,0 +1,72 @@
+.btnPrimary {
+	width: 100%;
+	height: 100%;
+	border: none;
+	border-radius: 2rem;
+	color: #fff;
+	background: red;
+	text-transform: uppercase;
+
+
+	&:disabled {
+		background: red;
+		opacity: 50%
+
+	}
+
+	&:not([disabled]):hover,
+	&:focus {
+		opacity: 75%;
+		cursor: pointer;
+	}
+}
+
+.btnBorder {
+	width: 100%;
+	border-radius: 2rem;
+	height: 100%;
+	border: 0;
+	background: red;
+	padding: 2px;
+
+	.spanBorder {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		text-transform: uppercase;
+		color: #BC9CFF;
+		background: #fff;
+		border-radius: 2rem;
+	}
+
+	&:disabled {
+		opacity: 50%;
+	}
+
+	&:not([disabled]):hover,
+	&:focus {
+		opacity: 75%;
+		cursor: pointer;
+	}
+}
+
+.btnText {
+	width: fit-content;
+	height: fit-content;
+	border: none;
+	color: #BC9CFF;
+	background: rgba(0, 0, 0, 0);
+	text-transform: uppercase;
+
+	&:disabled {
+		color: #958ea6;
+	}
+
+	&:not([disabled]):hover,
+	&:focus {
+		opacity: 75%;
+		cursor: pointer;
+	}
+}

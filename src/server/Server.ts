@@ -5,6 +5,14 @@ const messageDate = [date.getMonth(), date.getDate(), date.getFullYear()].join('
 
 
 
+// export function addFolder(isFolderName: string): void {
+// 	folders.push({
+// 		name: isFolderName,
+// 		requiredFolder: false,
+// 		messages: []
+// 	});
+// };
+
 export const folders: IFolder[] = [
 	{
 		name: 'Outgoing',
