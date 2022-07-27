@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BtnTick, { BtnTickVariants } from '../../buttons/btnTick/BtnTick';
 import InputText, { InputVariants } from '../inputText/InputText';
 import styles from './InputBtn.module.scss';
@@ -13,20 +13,23 @@ interface IInputBtn {
 
 export default function InputBtn(props: IInputBtn) {
 
-	let str: string;
+	const [inpValue, setInpValue] = useState('');
 
 	const getFolderName = (e: React.ChangeEvent<HTMLInputElement>) => {
-		str = e.target.value;
+		const value = e.currentTarget.value;
+		setInpValue(value);
 	};
 
 	const sendFolderName = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-		props.onClick(str);
+		props.onClick(inpValue);
+		setInpValue('');
 	};
 
 	return (
 		<form className={styles.inputBtn}>
 			<InputText
+				value={inpValue}
 				autoFocus={true}
 				onChange={getFolderName}
 				type={props.typeInput}

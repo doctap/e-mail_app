@@ -5,11 +5,15 @@
 	align-items: center;
 	flex-wrap: wrap;
 	font-size: 1rem;
+	min-height: 2.5rem;
 
 	.TextField {
-		max-width: 8rem;
-		height: 2.5rem;
+		width: 8rem;
 		display: flex;
 		align-items: center;
+	}
+
+	.controlButtons {
+		width: 4.125rem;
 	}
 }

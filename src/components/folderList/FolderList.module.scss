@@ -1,0 +1,20 @@
+.FolderList {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	width: 100%;
+
+	&>* {
+		margin-bottom: 1rem;
+	}
+
+	.custom_context_menu {
+		position: fixed;
+		z-index: 1;
+
+		.option {
+			cursor: pointer;
+		}
+	}
+}

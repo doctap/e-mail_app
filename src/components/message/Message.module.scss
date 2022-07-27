@@ -9,10 +9,12 @@
 	.author {
 		width: 10rem;
 		padding-left: .5rem;
+		white-space: nowrap;
 	}
 
 	.message {
 		padding-left: 1rem;
+		white-space: nowrap;
 	}
 
 	.date {

@@ -1,30 +1,64 @@
-import React from 'react';
-import Folder from '../folder/Folder';
-import { IMessage } from '../message/Message';
+import React, { useState } from 'react';
+import { folders } from '../../server/Server';
+import FolderList from '../folderList/FolderList';
+import FolderManager from '../folderManager/FolderManager';
+import styles from './Menu.module.scss';
 
 interface IMenu {
-	folders: IFolder[];
 	getCurrentFolderName(name: string): void;
-}
-
-export interface IFolder {
-	name: string;
-	requiredFolder: boolean;
-	messages: IMessage[];
 }
 
 export default function Menu(props: IMenu) {
 
+	const [arrFolders, setArrFolder] = useState(folders);
+
+	const addFolder = (isFolderName: string) => {
+		if (isFolderName)
+			folders.push({
+				name: isFolderName,
+				requiredFolder: false,
+				messages: [
+					{
+						author: 'Norman Morales',
+						message: 'Hey bitch, nice hairs😁',
+						date: '234',
+					},
+				]
+			});
+		const result = folders.slice();
+		setArrFolder(result);
+	};
+
+	const deleteFolder = (nameFolder: string) => {
+		folders.forEach((folder, inx, folders) => {
+			if (folder.name === nameFolder && folder.requiredFolder === false) folders.splice(inx, 1)
+		});
+		const result = folders.slice();
+		setArrFolder(result);
+	};
+
+	//======== Редактировать имя папки =======
+	// const editFolderName = (nameFolder: string) => {
+	// 	folders.forEach((folder, inx, folders) => {
+	// 		if (folder.name === nameFolder && folder.requiredFolder === false) folders.splice(inx, 1)
+	// 	});
+	// 	const result = folders.slice();
+	// 	setArrFolder(result);
+	// };
+
 	return (
-		<>
-			{props.folders.map(folder =>
-				<Folder
-					key={folder.name}
-					name={folder.name}
-					onClick={props.getCurrentFolderName}
-					requiredFolder={folder.requiredFolder}
+		<div>
+			<div className={styles.FolderList}>
+				<FolderList
+					folders={arrFolders}
+					getCurrentFolderName={props.getCurrentFolderName}
+					deleteCurrentFolder={deleteFolder}
+					editCurrentFolder={() => 0}
 				/>
-			)}
-		</>
+			</div>
+			<div className={styles.FolderManagementButton}>
+				<FolderManager sendFolderName={addFolder} />
+			</div>
+		</div>
 	)
 }

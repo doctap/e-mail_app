@@ -18,11 +18,10 @@ export default function FolderManager(props: IFolderManager) {
 			<div className={styles.controlButtons}>
 				<Button onClick={() => setShowInput(!showInput)} name='create' type='button' variant={BtnVariants.BtnText} />
 			</div>
-
-			<div className={styles.TextField}>
-				{
-					showInput
-						?
+			{
+				showInput
+					?
+					<div className={styles.TextField}>
 						<InputBtn
 							onClick={props.sendFolderName}
 							placeholderInput='Folder name'
@@ -30,11 +29,10 @@ export default function FolderManager(props: IFolderManager) {
 							typeInput='text'
 							variantBtn={BtnTickVariants.Add}
 						/>
-						:
-						null
-				}
-			</div>
-
+					</div>
+					:
+					null
+			}
 		</div>
 	)
 }

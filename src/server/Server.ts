@@ -1,4 +1,4 @@
-import { IFolder } from "../components/menu/Menu";
+import { IFolder } from "../components/folderList/FolderList";
 
 const date = new Date();
 const messageDate = [date.getMonth(), date.getDate(), date.getFullYear()].join('.').toString();

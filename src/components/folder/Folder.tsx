@@ -5,19 +5,21 @@ interface IFolder {
 	name: string;
 	requiredFolder: boolean;
 	onClick: (isName: string) => void;
+	onContextMenu: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export default function Folder(props: IFolder) {
 
-	function getFolderValue(e: React.MouseEvent<HTMLButtonElement>) {
+	function getFolderName(e: React.MouseEvent<HTMLButtonElement>) {
 		const elem = e.currentTarget;
 		props.onClick(elem.name);
 	}
 
 	return (
 		<button
+			onContextMenu={props.onContextMenu}
 			className={styles.folder}
-			onClick={getFolderValue}
+			onClick={getFolderName}
 			name={props.name}
 		>
 			{props.name}

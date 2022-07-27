@@ -7,6 +7,7 @@ export enum InputVariants {
 }
 
 export interface IInputProps {
+	value?: string;
 	type: string;
 	placeholder: string;
 	variant: InputVariants;
@@ -29,6 +30,7 @@ export default function InputText(props: IInputProps) {
 
 	return (
 		<input
+			value={props.value}
 			autoFocus={props.autoFocus}
 			type={props.type}
 			className={inputStyle(props.variant)}
