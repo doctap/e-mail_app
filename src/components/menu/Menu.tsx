@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { folders } from '../../server/Server';
 import FolderList from '../folderList/FolderList';
 import FolderManager from '../folderManager/FolderManager';
+import Modal from '../modalWindows/modal/Modal';
 import styles from './Menu.module.scss';
 
 interface IMenu {
@@ -38,13 +39,13 @@ export default function Menu(props: IMenu) {
 	};
 
 	//======== Редактировать имя папки =======
-	// const editFolderName = (nameFolder: string) => {
-	// 	folders.forEach((folder, inx, folders) => {
-	// 		if (folder.name === nameFolder && folder.requiredFolder === false) folders.splice(inx, 1)
-	// 	});
-	// 	const result = folders.slice();
-	// 	setArrFolder(result);
-	// };
+	const editFolderName = (isCurrentName: string, isEditName: string) => {
+		folders.forEach(folder => {
+			if (folder.name === isCurrentName && folder.requiredFolder === false) folder.name = isEditName
+		});
+		const result = folders.slice();
+		setArrFolder(result);
+	};
 
 	return (
 		<div>
@@ -53,12 +54,13 @@ export default function Menu(props: IMenu) {
 					folders={arrFolders}
 					getCurrentFolderName={props.getCurrentFolderName}
 					deleteCurrentFolder={deleteFolder}
-					editCurrentFolder={() => 0}
+					editCurrentFolder={editFolderName}
 				/>
 			</div>
 			<div className={styles.FolderManagementButton}>
 				<FolderManager sendFolderName={addFolder} />
 			</div>
+			
 		</div>
 	)
 }

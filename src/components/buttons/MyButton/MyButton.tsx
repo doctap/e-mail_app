@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Button.module.scss';
+import styles from './MyButton.module.scss';
 
 export enum BtnVariants {
 	Primary = 1,
@@ -11,12 +11,12 @@ export enum BtnVariants {
 export interface IButtonProps {
 	name: string;
 	type: 'button' | 'reset' | 'submit';
-	variant: BtnVariants;
+	model: BtnVariants;
 	disabled?: boolean;
 	onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function Button(props: IButtonProps) {
+export default function MyButton(props: IButtonProps) {
 
 	const variantBtn = (v: BtnVariants) => {
 		switch (v) {
@@ -35,7 +35,7 @@ export default function Button(props: IButtonProps) {
 		<button
 			onClick={props.onClick}
 			type={props.type}
-			className={variantBtn(props.variant)}
+			className={variantBtn(props.model)}
 			disabled={props.disabled}
 		>
 			<span className={styles.spanBorder}>

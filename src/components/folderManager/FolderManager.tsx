@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BtnTickVariants } from '../buttons/btnTick/BtnTick';
-import Button, { BtnVariants } from '../buttons/button/Button';
+import MyButton, { BtnVariants } from '../buttons/MyButton/MyButton';
 import InputBtn from '../inputs/inputBtn/InputBtn';
 import styles from './FolderManager.module.scss';
 
@@ -16,7 +16,7 @@ export default function FolderManager(props: IFolderManager) {
 		<div className={styles.folderManager}>
 
 			<div className={styles.controlButtons}>
-				<Button onClick={() => setShowInput(!showInput)} name='create' type='button' variant={BtnVariants.BtnText} />
+				<MyButton onClick={() => setShowInput(!showInput)} name='create' type='button' model={BtnVariants.BtnText} />
 			</div>
 			{
 				showInput

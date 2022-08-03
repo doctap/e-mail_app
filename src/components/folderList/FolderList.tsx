@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import { folders } from '../../server/Server';
 import Folder from '../folder/Folder';
 import { IMessage } from '../message/Message';
+import Modal from '../modalWindows/modal/Modal';
+import SetFolderName from '../modalWindows/setFolderName/SetFolderName';
 import styles from './FolderList.module.scss';
 
 interface IMenu {
 	folders: IFolder[];
 	getCurrentFolderName(name: string): void;
 	deleteCurrentFolder(name: string): void;
-	editCurrentFolder(name: string): void;
+	editCurrentFolder(isCurrentName: string, isEditName: string): void;
 }
 
 export interface IFolder {
@@ -18,37 +21,38 @@ export interface IFolder {
 
 export default function FolderList(props: IMenu) {
 
-	const [isShown, setIsShown] = useState(false);
+	const [isShownContextMenu, setIsShownContextMenu] = useState(false);
 	const [position, setPosition] = useState({ x: 0, y: 0 });
-	const [nameFolder, setNameFolder] = useState('');
+	const [isCurrentName, setIsCurrentName] = useState('');
+	const [isShowModalWindow, setIsShowModalWindow] = useState(true);
 
-	const showContextMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
+	const callContextMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault()
 
-		setNameFolder(e.currentTarget.name)
+		/**проверка на вызов "ContextMenu" над необязательной папкой "requiredFolder"*/
+		if (folders.some(it => it.name === e.currentTarget.name && it.requiredFolder === false)) {
 
-		setIsShown(false);
-		const newPosition = {
-			x: e.pageX,
-			y: e.pageY,
+			setIsCurrentName(e.currentTarget.name)
+			setIsShownContextMenu(false);
+			const newPosition = {
+				x: e.pageX,
+				y: e.pageY,
+			}
+			setPosition(newPosition)
+			setIsShownContextMenu(true)
 		}
-
-		setPosition(newPosition)
-		setIsShown(true)
 	};
 
 	const hideContextMenu = () => {
-		setIsShown(false)
+		setIsShownContextMenu(false)
 	};
 
 	const deleteCurrentFolder = () => {
-		props.deleteCurrentFolder(nameFolder)
+		props.deleteCurrentFolder(isCurrentName)
 	};
 
-	const editCurrentFolder = () => {
-		//Редактировать Имя Папки
-		props.editCurrentFolder(nameFolder)
-		console.log('edit')
+	const editCurrentFolder = (isEditName: string) => {
+		props.editCurrentFolder(isCurrentName, isEditName)
 	};
 
 	return (
@@ -58,7 +62,7 @@ export default function FolderList(props: IMenu) {
 		>
 			{props.folders.map(folder =>
 				<Folder
-					onContextMenu={showContextMenu}
+					onContextMenu={callContextMenu}
 					key={folder.name}
 					name={folder.name}
 					onClick={props.getCurrentFolderName}
@@ -67,14 +71,26 @@ export default function FolderList(props: IMenu) {
 			)}
 
 			{
-				isShown && (
+				isShownContextMenu && (
 					<div
 						className={styles.custom_context_menu}
 						style={{ top: position.y, left: position.x }}
 					>
 						<button className={styles.option} onClick={deleteCurrentFolder}>Delete</button>
-						<button className={styles.option} onClick={editCurrentFolder}>Edit name</button>
+						<button className={styles.option} onClick={() => setIsShowModalWindow(true)}>Edit name</button>
 					</div>
+				)
+			}
+
+			{
+				isShowModalWindow && (
+					// <SetFolderName
+					// 	hideWindow={() => setIsShowModalWindow(false)}
+					// 	callChangedName={editCurrentFolder}
+					// />
+					<Modal onClose={() => setIsShowModalWindow(false)}>
+						<Folder name='casc' onClick={() => 0} onContextMenu={() => 0} requiredFolder={false} />
+					</Modal>
 				)
 			}
 		</div>
