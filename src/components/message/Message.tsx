@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Message.module.scss';
 
 export interface IMessage {
@@ -8,12 +8,22 @@ export interface IMessage {
 }
 
 export default function Message(props: IMessage) {
+
+	const [classModification, setClassModification] = useState(true);
+
+	const openMessage = () => {
+		setClassModification(!classModification)
+	};
+
 	return (
-		<tr className={styles.Messages}>
+		<tr
+			onClick={openMessage}
+			className={styles.Messages}
+		>
 			<td className={styles.author}>
 				{props.author}
 			</td>
-			<td className={styles.message}>
+			<td className={classModification ? styles.message : `${styles.message} ${styles.message_open}`}>
 				{props.message}
 			</td>
 			<td className={styles.date}>

@@ -9,12 +9,22 @@
 	.author {
 		width: 10rem;
 		padding-left: .5rem;
-		white-space: nowrap;
 	}
 
 	.message {
+		cursor: pointer;
 		padding-left: 1rem;
+		min-width: 10rem;
+		max-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
 		white-space: nowrap;
+
+		&_open {
+			height: fit-content;
+			white-space: normal;
+			text-overflow: clip;
+		}
 	}
 
 	.date {

@@ -29,6 +29,7 @@ export default function ModalWindow(props: ISetFolderName) {
 						value={isChangedName}
 						onChange={event => setIsChangedName(event.target.value)}
 						type="text"
+						maxLength={15}
 					/>
 					<Button onClick={sendChangedName} type='button' variant="primary" id="button-addon2">
 						{props.buttonName}

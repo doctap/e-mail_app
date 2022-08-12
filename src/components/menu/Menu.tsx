@@ -55,7 +55,7 @@ export default function Menu(props: IMenu) {
 	};
 
 	return (
-		<div>
+		<>
 			<div className={styles.FolderList}>
 				<FolderList
 					folders={arrFolders}
@@ -101,6 +101,6 @@ export default function Menu(props: IMenu) {
 					</Modal>
 				)
 			}
-		</div>
+		</>
 	)
 }
