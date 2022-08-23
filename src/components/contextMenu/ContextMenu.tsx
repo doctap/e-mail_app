@@ -1,13 +1,17 @@
 import React from 'react';
 import styles from './ContextMenu.module.scss';
 
+export interface option {
+	buttonName: string;
+	func: () => void;
+};
+
 interface IContextMenu {
 	position: {
 		x: number,
 		y: number,
 	};
-	deleteFolder: () => void;
-	editNameFolder: () => void;
+	options: option[];
 }
 
 export default function ContextMenu(props: IContextMenu) {
@@ -16,8 +20,9 @@ export default function ContextMenu(props: IContextMenu) {
 			className={styles.custom_context_menu}
 			style={{ top: props.position.y, left: props.position.x }}
 		>
-			<button className={styles.option} onClick={props.deleteFolder}>Delete</button>
-			<button className={styles.option} onClick={props.editNameFolder}>Edit name</button>
+			{
+				props.options.map(option => <button className={styles.option} children={option.buttonName} onClick={option.func} key={option.buttonName} />)
+			}
 		</div>
 	)
 }

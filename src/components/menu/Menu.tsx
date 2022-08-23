@@ -4,6 +4,7 @@ import { folders } from '../../server/Server';
 import FolderList from '../folderList/FolderList';
 import Modal from '../modalWindows/modalBackGround/ModalBackGround';
 import ModalWindow from '../modalWindows/modalWindow/ModalWindow';
+import uniqId from 'uniqid';
 import styles from './Menu.module.scss';
 
 interface IMenu {
@@ -27,6 +28,8 @@ export default function Menu(props: IMenu) {
 						author: 'Norman Morales',
 						message: 'Hey bitch, nice hairs😁',
 						date: '234',
+						id: uniqId(),
+						marker: false,
 					},
 				]
 			});

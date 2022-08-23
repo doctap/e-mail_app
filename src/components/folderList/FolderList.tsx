@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { folders } from '../../server/Server';
-import ContextMenu from '../contextMenu/ContextMenu';
+import ContextMenu, { option } from '../contextMenu/ContextMenu';
 import Folder from '../folder/Folder';
 import { IMessage } from '../message/Message';
 import styles from './FolderList.module.scss';
@@ -20,6 +20,26 @@ export interface IFolder {
 }
 
 export default function FolderList(props: IMenu) {
+
+	const windowListener = useCallback(() => {
+		setIsShownContextMenu(false)
+	}, []);
+	
+	window.addEventListener('click', windowListener)
+
+	const optionsContextMenu: option[] = [
+		{
+			buttonName: 'Delete',
+			func: () => props.deleteCurrentFolder(isCurrentName)
+		},
+		{
+			buttonName: 'Edit name',
+			func: () => {
+				props.getCurrentFolderForChange(isCurrentName)
+				props.showModal(true)
+			}
+		}
+	];
 
 	const [isShownContextMenu, setIsShownContextMenu] = useState(false);
 	const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -65,11 +85,7 @@ export default function FolderList(props: IMenu) {
 				isShownContextMenu && (
 					<ContextMenu
 						position={position}
-						deleteFolder={() => props.deleteCurrentFolder(isCurrentName)}
-						editNameFolder={() => {
-							props.getCurrentFolderForChange(isCurrentName)
-							props.showModal(true)
-						}}
+						options={optionsContextMenu}
 					/>
 				)
 			}
