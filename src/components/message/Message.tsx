@@ -14,7 +14,7 @@ export default function Message(props: IMessage) {
 
 	const [classModification, setClassModification] = useState(true);
 
-	const openMessage = (event: React.MouseEvent<HTMLTableRowElement>) => {
+	const openMessage = () => {
 		setClassModification(!classModification)
 	};
 
