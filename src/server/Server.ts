@@ -2,8 +2,7 @@ import uniqId from 'uniqid';
 import { IFolder } from "../components/folderList/FolderList";
 
 
-const date = new Date();
-const messageDate = [date.getDate(), date.getMonth(), date.getFullYear()].join('.').toString();
+const messageDate = new Date().toLocaleDateString();
 
 
 

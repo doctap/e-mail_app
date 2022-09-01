@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import ListMessages from './components/listMessages/ListMessages';
 import { folders } from './server/Server';
 import styles from './App.module.scss';
 import Menu from './components/menu/Menu';
 import { IFolder } from './components/folderList/FolderList';
 import { IMessage } from './components/message/Message';
+import BoardMessages from './components/boardMessages/BoardMessages';
+
 
 function App() {
 
 	const [messages, setMessages] = useState(folders[0].messages);
+
 
 	const getFolder = (folderName: string) => {
 		const messages = folders.find(folder => folder.name === folderName)?.messages;
@@ -18,6 +20,13 @@ function App() {
 	const deleteMessage = (IDMessage: string) => {
 		const findingFolder: IFolder = folders.find(f => f.messages.some(m => m.id === IDMessage))
 			?? { name: '', messages: [], requiredFolder: true };
+
+		const deletedMessage: IMessage = findingFolder.messages.find(m => m.id === IDMessage)
+			?? { author: '', date: '', id: '', marker: false, message: '' };
+
+		const remoteMailbox: IFolder = folders.find(f => f.name === 'Deleted')
+			?? { name: '', messages: [], requiredFolder: true };
+		remoteMailbox.messages = [deletedMessage, ...remoteMailbox.messages];
 
 		findingFolder.messages = findingFolder.messages.filter(m => m.id !== IDMessage);
 		setMessages(findingFolder.messages);
@@ -42,10 +51,10 @@ function App() {
 			</div>
 
 			<div className={styles.ListMessages}>
-				<ListMessages
-					messages={messages}
+				<BoardMessages
 					deleteMessage={deleteMessage}
 					markMessage={markMessage}
+					messages={messages}
 				/>
 			</div>
 			{/* <TestComponent /> */}
@@ -55,3 +64,4 @@ function App() {
 }
 
 export default App;
+
