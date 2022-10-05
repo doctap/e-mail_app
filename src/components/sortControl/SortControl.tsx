@@ -2,8 +2,8 @@ import React from 'react'
 import { Form } from 'react-bootstrap'
 
 export interface IOptions {
-	value: string,
-	name: string,
+	value: string;
+	name: string;
 }
 
 interface ISortControl {

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { folders } from '../../server/Server';
 import FolderList from '../folderList/FolderList';
-import Modal from '../modalWindows/modalBackGround/ModalBackGround';
 import ModalWindow from '../modalWindows/modalWindow/ModalWindow';
 import uniqId from 'uniqid';
 import styles from './Menu.module.scss';
+import ModalBackGround from '../modalWindows/modalBackGround/ModalBackGround';
 
 interface IMenu {
 	getCurrentFolderName(name: string): void;
@@ -84,25 +84,23 @@ export default function Menu(props: IMenu) {
 			</div>
 
 			{
-				showModalWindow && (
-					<Modal onClose={() => setShowModalWindow(false)}>
-						{
-							toggleCreateOrEdit
-								?
-								<ModalWindow
-									label="What's the new name?"
-									buttonName='Edit'
-									getData={editFolderName}
-								/>
-								:
-								<ModalWindow
-									label="Create folder"
-									buttonName='Create'
-									getData={addFolder}
-								/>
-						}
-					</Modal>
-				)
+				<ModalBackGround isShowModalBackGround={showModalWindow} onClose={() => setShowModalWindow(false)}>
+					{
+						toggleCreateOrEdit
+							?
+							<ModalWindow
+								label="What's the new name?"
+								buttonName='Edit'
+								getData={editFolderName}
+							/>
+							:
+							<ModalWindow
+								label="Create folder"
+								buttonName='Create'
+								getData={addFolder}
+							/>
+					}
+				</ModalBackGround>
 			}
 		</>
 	)

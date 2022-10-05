@@ -1,12 +1,14 @@
 import React from 'react';
 import styles from './ModalBackGround.module.scss';
 
-interface IModal {
+interface IModalBackGround {
+	isShowModalBackGround: boolean;
 	children: React.ReactNode;
 	onClose: () => void;
 }
 
-export default function ModalBackGround(props: IModal) {
+export default function ModalBackGround(props: IModalBackGround) {
+	if (!props.isShowModalBackGround) return null;
 	return (
 		<>
 			<div

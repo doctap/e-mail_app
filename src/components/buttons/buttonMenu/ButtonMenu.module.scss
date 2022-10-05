@@ -1,0 +1,15 @@
+.option {
+	font-size: .9rem;
+	color: #fff;
+	padding: .2rem .5rem;
+	text-align: left;
+	width: 100%;
+	cursor: pointer;
+	background: rgba(0, 0, 0, 0);
+	border: none;
+
+	&:hover {
+		color: #000;
+		background: #8473FF;
+	}
+}

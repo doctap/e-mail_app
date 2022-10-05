@@ -7,8 +7,9 @@ import SortControl, { IOptions } from '../sortControl/SortControl';
 
 interface IBoardMessages {
 	messages: IMessage[];
-	deleteMessage: (IDMessage: string) => void;
-	markMessage: (IDMessage: string) => void;
+	deleteMessage: (idMes: string) => void;
+	markMessage: (idMes: string) => void;
+	replaceMessage: (idMes: string, folderName: string) => void;
 }
 
 export default function BoardMessages(props: IBoardMessages) {
@@ -54,6 +55,7 @@ export default function BoardMessages(props: IBoardMessages) {
 			</InputGroup>
 
 			<ListMessages
+				replaceMessage={props.replaceMessage}
 				messages={sortedAndSearchedMessage}
 				deleteMessage={props.deleteMessage}
 				markMessage={props.markMessage}

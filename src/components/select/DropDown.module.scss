@@ -1,0 +1,43 @@
+.wrapper {
+	position: relative;
+
+	.name {
+		font-size: .9rem;
+		color: #fff;
+		padding: .2rem .5rem;
+		text-align: left;
+		width: 100%;
+		cursor: pointer;
+		background: #5740FF;
+		border-radius: inherit;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.arrow {
+			font-family: Material Icons;
+		}
+	}
+
+	.list {
+		position: absolute;
+		top: 0;
+		left: 100%;
+		z-index: 1;
+		padding: 0;
+		margin: 0;
+		background: #5740FF;
+		list-style: none;
+		border-radius: 0 4px 4px 4px;
+
+
+		&>*:first-child {
+			overflow: hidden;
+			border-radius: 0 4px 0 0;
+		}
+		&>*:last-child {
+			overflow: hidden;
+			border-radius: 0 0 4px 4px;
+		}
+	}
+}
