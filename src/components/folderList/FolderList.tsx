@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { folders } from '../../server/Server';
 import ContextMenu, { IOptionContextMenu } from '../contextMenu/ContextMenu';
 import Folder from '../folder/Folder';
@@ -19,7 +19,7 @@ export interface IFolder {
 	messages: IMessage[];
 }
 
-export default function FolderList(props: IMenu) {
+const FolderList = (props: IMenu) => {
 
 	const windowListener = useCallback(() => {
 		setIsShownContextMenu(false)
@@ -94,3 +94,5 @@ export default function FolderList(props: IMenu) {
 		</div>
 	)
 }
+
+export default memo(FolderList);

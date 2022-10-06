@@ -62,7 +62,7 @@ export default function ListMessages(props: IListMessages) {
 		setPosition(newPosition);
 		setIsShowContextMenu(true);
 	};
-
+	
 	return (
 		<>
 			<table className={styles.ListMessages}>

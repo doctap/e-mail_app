@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { folders } from './server/Server';
 import styles from './App.module.scss';
 import Menu from './components/menu/Menu';
 import { IFolder } from './components/folderList/FolderList';
 import { IMessage } from './components/message/Message';
 import BoardMessages from './components/boardMessages/BoardMessages';
-import TestComponent from './components/testComp/TestComponent';
+// import TestComponent from './components/testComp/TestComponent';
 
 
 function App() {
 	const [messages, setMessages] = useState(folders[0].messages);
 
-	const getFolder = (folderName: string) => {
+	const getFolder = useCallback((folderName: string) => {
 		const messages = folders.find(folder => folder.name === folderName)?.messages;
 		if (messages !== undefined) setMessages(messages);
-	};
+	}, []);
 
 	const deleteMessage = (IDMessage: string) => {
 		const findingFolder: IFolder = folders.find(f => f.messages.some(m => m.id === IDMessage))
@@ -74,4 +74,4 @@ function App() {
 
 export default App;
 
-{/* <TestComponent /> */}
+// {/* <TestComponent /> */}

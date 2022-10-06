@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { folders } from '../../server/Server';
 import FolderList from '../folderList/FolderList';
@@ -11,7 +11,7 @@ interface IMenu {
 	getCurrentFolderName(name: string): void;
 }
 
-export default function Menu(props: IMenu) {
+const Menu = (props: IMenu) => {
 
 	const [arrFolders, setArrFolder] = useState(folders);
 	const [showModalWindow, setShowModalWindow] = useState(false);
@@ -105,3 +105,5 @@ export default function Menu(props: IMenu) {
 		</>
 	)
 }
+
+export default memo(Menu);

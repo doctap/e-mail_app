@@ -27,7 +27,7 @@ export default function BoardMessages(props: IBoardMessages) {
 
 	const sortedAndSearchedMessage = useMemo(() => {
 		return sortedMessage.filter(message => message.message.includes(searchQuery));
-	}, [searchQuery, sortedMessage])
+	}, [searchQuery, sortedMessage]);
 
 	return (
 		<>
