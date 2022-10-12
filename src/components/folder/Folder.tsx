@@ -1,14 +1,15 @@
 import React from 'react';
 import styles from './Folder.module.scss';
 
-interface IFolder {
+interface IFolderButton {
 	name: string;
 	requiredFolder: boolean;
 	onClick: (isName: string) => void;
 	onContextMenu: (e: React.MouseEvent<HTMLButtonElement>) => void;
+	isSelected: boolean;
 }
 
-export default function Folder(props: IFolder) {
+export default function Folder(props: IFolderButton) {
 
 	function getFolderName(e: React.MouseEvent<HTMLButtonElement>) {
 		const elem = e.currentTarget;
@@ -18,7 +19,7 @@ export default function Folder(props: IFolder) {
 	return (
 		<button
 			onContextMenu={props.onContextMenu}
-			className={styles.folder}
+			className={props.isSelected ? `${styles.folder} ${styles.folder_selected}` : `${styles.folder}`}
 			onClick={getFolderName}
 			name={props.name}
 		>

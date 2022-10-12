@@ -4,20 +4,11 @@ import { IFolder } from "../components/folderList/FolderList";
 
 const messageDate = new Date().toLocaleDateString();
 
-
-
-// export function addFolder(isFolderName: string): void {
-// 	folders.push({
-// 		name: isFolderName,
-// 		requiredFolder: false,
-// 		messages: []
-// 	});
-// };
-
 export const folders: IFolder[] = [
 	{
 		name: 'Outgoing',
 		requiredFolder: true,
+		isSelected: true,
 		messages: [
 			{
 				author: 'Norman Morales',
@@ -59,6 +50,7 @@ export const folders: IFolder[] = [
 	{
 		name: 'Incoming',
 		requiredFolder: true,
+		isSelected: false,
 		messages: [
 			{
 				author: 'Vasili Nikiforov',
@@ -100,6 +92,7 @@ export const folders: IFolder[] = [
 	{
 		name: 'Drafts',
 		requiredFolder: true,
+		isSelected: false,
 		messages: [
 			{
 				author: 'James Watson',
@@ -141,6 +134,7 @@ export const folders: IFolder[] = [
 	{
 		name: 'Deleted',
 		requiredFolder: true,
+		isSelected: false,
 		messages: [
 			{
 				author: 'Jeff Davis',
@@ -182,6 +176,7 @@ export const folders: IFolder[] = [
 	{
 		name: 'Spam',
 		requiredFolder: true,
+		isSelected: false,
 		messages: [
 			{
 				author: 'Mario Stephens',

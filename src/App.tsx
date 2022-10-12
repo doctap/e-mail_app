@@ -10,21 +10,32 @@ import BoardMessages from './components/boardMessages/BoardMessages';
 
 function App() {
 	const [messages, setMessages] = useState(folders[0].messages);
+	const [arrFolders, setArrFolders] = useState(folders);
 
-	const getFolder = useCallback((folderName: string) => {
+	const getFolder = (folderName: string) => {
+		const currentSelected = folders.find(f => f.isSelected)
+			?? { name: '', messages: [], isSelected: false, requiredFolder: false };
+		currentSelected.isSelected = false;
+
+		const willBeSelected = folders.find(f => f.name === folderName)
+			?? { name: '', messages: [], isSelected: false, requiredFolder: false };
+		willBeSelected.isSelected = true;
+
+		setArrFolders(folders);
+
 		const messages = folders.find(folder => folder.name === folderName)?.messages;
 		if (messages !== undefined) setMessages(messages);
-	}, []);
+	};
 
 	const deleteMessage = (IDMessage: string) => {
 		const findingFolder: IFolder = folders.find(f => f.messages.some(m => m.id === IDMessage))
-			?? { name: '', messages: [], requiredFolder: true };
+			?? { name: '', messages: [], isSelected: false, requiredFolder: true };
 
 		const deletedMessage: IMessage = findingFolder.messages.find(m => m.id === IDMessage)
 			?? { author: '', date: '', id: '', marker: false, message: '' };
 
 		const remoteMailbox: IFolder = folders.find(f => f.name === 'Deleted')
-			?? { name: '', messages: [], requiredFolder: true };
+			?? { name: '', messages: [], isSelected: false, requiredFolder: true };
 		remoteMailbox.messages = [deletedMessage, ...remoteMailbox.messages];
 
 		findingFolder.messages = findingFolder.messages.filter(m => m.id !== IDMessage);
@@ -33,7 +44,7 @@ function App() {
 
 	const markMessage = (IDMessage: string) => {
 		const findingFolder: IFolder = folders.find(f => f.messages.some(m => m.id === IDMessage))
-			?? { name: '', messages: [], requiredFolder: true };
+			?? { name: '', messages: [], isSelected: false, requiredFolder: true };
 		const findingMessage: IMessage = findingFolder.messages.find(m => m.id === IDMessage)
 			?? { author: '', date: '', id: '', marker: false, message: '' };
 
@@ -56,7 +67,10 @@ function App() {
 		<div className={styles.App}>
 
 			<div className={styles.Menu}>
-				<Menu getCurrentFolderName={getFolder} />
+				<Menu
+					folders={arrFolders}
+					getCurrentFolderName={getFolder}
+				/>
 			</div>
 
 			<div className={styles.BoardMessages}>

@@ -13,10 +13,11 @@ interface IMenu {
 	showModal(isShow: boolean): void;
 }
 
-export interface IFolder {
+export interface  IFolder {
 	name: string;
 	requiredFolder: boolean;
 	messages: IMessage[];
+	isSelected: boolean;
 }
 
 const FolderList = (props: IMenu) => {
@@ -24,7 +25,7 @@ const FolderList = (props: IMenu) => {
 	const windowListener = useCallback(() => {
 		setIsShownContextMenu(false)
 	}, []);
-	
+
 	window.addEventListener('click', windowListener)
 
 	const optionsContextMenu: IOptionContextMenu[] = [
@@ -75,6 +76,7 @@ const FolderList = (props: IMenu) => {
 		>
 			{props.folders.map(folder =>
 				<Folder
+					isSelected={folder.isSelected}
 					onContextMenu={callContextMenu}
 					key={folder.name}
 					name={folder.name}

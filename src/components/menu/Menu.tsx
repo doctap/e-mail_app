@@ -1,19 +1,20 @@
 import React, { memo, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { folders } from '../../server/Server';
-import FolderList from '../folderList/FolderList';
+import FolderList, { IFolder } from '../folderList/FolderList';
 import ModalWindow from '../modalWindows/modalWindow/ModalWindow';
 import uniqId from 'uniqid';
 import styles from './Menu.module.scss';
 import ModalBackGround from '../modalWindows/modalBackGround/ModalBackGround';
 
 interface IMenu {
+	folders: IFolder[];
 	getCurrentFolderName(name: string): void;
 }
 
 const Menu = (props: IMenu) => {
 
-	const [arrFolders, setArrFolder] = useState(folders);
+	const [arrFolders, setArrFolder] = useState(props.folders);
 	const [showModalWindow, setShowModalWindow] = useState(false);
 	const [toggleCreateOrEdit, setToggleCreateOrEdit] = useState(false);
 	const [isCurrentName, setIsCurrentName] = useState('');
@@ -23,6 +24,7 @@ const Menu = (props: IMenu) => {
 			folders.push({
 				name: isFolderName,
 				requiredFolder: false,
+				isSelected: false,
 				messages: [
 					{
 						author: 'Norman Morales',
@@ -106,4 +108,4 @@ const Menu = (props: IMenu) => {
 	)
 }
 
-export default memo(Menu);
+export default Menu;
