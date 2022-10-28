@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/e-mail_app/static/css/main.a0a19ae2.css",
-    "main.js": "/e-mail_app/static/js/main.aa8eaa5a.js",
+    "main.css": "/e-mail_app/static/css/main.68b30423.css",
+    "main.js": "/e-mail_app/static/js/main.42756b51.js",
     "static/js/787.528f2145.chunk.js": "/e-mail_app/static/js/787.528f2145.chunk.js",
     "static/media/MaterialIcons-Regular.eot": "/e-mail_app/static/media/MaterialIcons-Regular.4674f8ded773cb03e824.eot",
     "static/media/MaterialIcons-Regular.ttf": "/e-mail_app/static/media/MaterialIcons-Regular.5e7382c63da0098d634a.ttf",
     "static/media/MaterialIcons-Regular.woff": "/e-mail_app/static/media/MaterialIcons-Regular.83bebaf37c09c7e1c3ee.woff",
     "static/media/MaterialIcons-Regular.woff2": "/e-mail_app/static/media/MaterialIcons-Regular.cff684e59ffb052d72cb.woff2",
     "index.html": "/e-mail_app/index.html",
-    "main.a0a19ae2.css.map": "/e-mail_app/static/css/main.a0a19ae2.css.map",
-    "main.aa8eaa5a.js.map": "/e-mail_app/static/js/main.aa8eaa5a.js.map",
+    "main.68b30423.css.map": "/e-mail_app/static/css/main.68b30423.css.map",
+    "main.42756b51.js.map": "/e-mail_app/static/js/main.42756b51.js.map",
     "787.528f2145.chunk.js.map": "/e-mail_app/static/js/787.528f2145.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a0a19ae2.css",
-    "static/js/main.aa8eaa5a.js"
+    "static/css/main.68b30423.css",
+    "static/js/main.42756b51.js"
   ]
 }
