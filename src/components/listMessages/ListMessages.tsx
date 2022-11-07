@@ -62,9 +62,9 @@ export default function ListMessages(props: IListMessages) {
 		setPosition(newPosition);
 		setIsShowContextMenu(true);
 	};
-	
+
 	return (
-		<>
+		<div className={styles.wrapperListMessages}>
 			<table className={styles.ListMessages}>
 				<tbody>
 					{props.messages.map((item, i) =>
@@ -83,6 +83,6 @@ export default function ListMessages(props: IListMessages) {
 			{
 				isShowContextMenu && (<ContextMenu position={position} options={optionsContextMenu} />)
 			}
-		</>
+		</div>
 	)
 }

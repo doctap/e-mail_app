@@ -1,11 +1,10 @@
-import React, { memo, useState } from 'react';
-import { Button } from 'react-bootstrap';
-import { folders } from '../../server/Server';
-import FolderList, { IFolder } from '../folderList/FolderList';
+import React, { useState } from 'react';
+import { IFolder } from '../folderList/FolderList';
 import ModalWindow from '../modalWindows/modalWindow/ModalWindow';
 import uniqId from 'uniqid';
 import styles from './Menu.module.scss';
 import ModalBackGround from '../modalWindows/modalBackGround/ModalBackGround';
+import FolderManager from '../folderManager/FolderManager';
 
 interface IMenu {
 	folders: IFolder[];
@@ -21,7 +20,7 @@ const Menu = (props: IMenu) => {
 
 	const addFolder = (isFolderName: string) => {
 		if (isFolderName)
-			folders.push({
+			props.folders.push({
 				name: isFolderName,
 				requiredFolder: false,
 				isSelected: false,
@@ -35,56 +34,40 @@ const Menu = (props: IMenu) => {
 					},
 				]
 			});
-		const result = folders.slice();
+		const result = props.folders.slice();
 		setArrFolder(result);
 		setShowModalWindow(false);
-	};
-
-	const deleteFolder = (nameFolder: string) => {
-		folders.forEach((folder, inx, folders) => {
-			if (folder.name === nameFolder) folders.splice(inx, 1)
-		});
-		const result = folders.slice();
-		setArrFolder(result);
-	};
+	}
 
 	const editFolderName = (isEditName: string) => {
 		if (isEditName) {
-			folders.forEach(folder => {
+			props.folders.forEach(folder => {
 				if (folder.name === isCurrentName) folder.name = isEditName
 			});
-			const result = folders.slice();
+			const result = props.folders.slice();
 			setArrFolder(result);
 			setShowModalWindow(false);
 		}
-	};
+	}
+
+	const deleteFolder = (nameFolder: string) => {
+		props.folders.forEach((folder, inx, folders) => {
+			if (folder.name === nameFolder) folders.splice(inx, 1)
+		});
+		const result = props.folders.slice();
+		setArrFolder(result);
+	}
 
 	return (
 		<>
-			<div className={styles.FolderList}>
-				<FolderList
-					folders={arrFolders}
-					getCurrentFolderName={props.getCurrentFolderName}
-					deleteCurrentFolder={deleteFolder}
-					getCurrentFolderForChange={currentName => setIsCurrentName(currentName)}
-					showModal={(isShow) => {
-						setShowModalWindow(isShow)
-						setToggleCreateOrEdit(isShow)
-					}}
-				/>
-			</div>
-			<div className={styles.FolderManagementButton}>
-				<Button
-					variant="primary"
-					size="sm"
-					children='Create Folder'
-					onClick={() => {
-						setShowModalWindow(true)
-						setToggleCreateOrEdit(false)
-					}}
-				/>
-			</div>
-
+			<FolderManager
+				deleteFolder={deleteFolder}
+				folders={arrFolders}
+				getCurrentFolderName={props.getCurrentFolderName}
+				setIsCurrentName={setIsCurrentName}
+				setShowModalWindow={setShowModalWindow}
+				setToggleCreateOrEdit={setToggleCreateOrEdit}
+			/>
 			{
 				<ModalBackGround isShowModalBackGround={showModalWindow} onClose={() => setShowModalWindow(false)}>
 					{

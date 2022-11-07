@@ -1,3 +1,10 @@
-.ListMessages {
-	width: 100%;
+.wrapperListMessages {
+	background: rgb(255, 255, 255);
+	padding: .5rem 1rem 1rem 1rem;
+	border-radius: 10px;
+
+	.ListMessages {
+		width: 100%;
+	}
+
 }
