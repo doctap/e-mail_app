@@ -64,12 +64,10 @@ function App() {
 	return (
 		<div className={styles.App}>
 
-			<div className={styles.Menu}>
-				<Menu
-					folders={arrFolders}
-					getCurrentFolderName={getFolder}
-				/>
-			</div>
+			<Menu
+				folders={arrFolders}
+				getCurrentFolderName={getFolder}
+			/>
 
 			<div className={styles.BoardMessages}>
 				<BoardMessages

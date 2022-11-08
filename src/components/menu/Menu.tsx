@@ -5,6 +5,7 @@ import uniqId from 'uniqid';
 import styles from './Menu.module.scss';
 import ModalBackGround from '../modalWindows/modalBackGround/ModalBackGround';
 import FolderManager from '../folderManager/FolderManager';
+import LogoBurger from '../logoBurger/LogoBurger';
 
 interface IMenu {
 	folders: IFolder[];
@@ -59,15 +60,21 @@ const Menu = (props: IMenu) => {
 	}
 
 	return (
-		<>
-			<FolderManager
-				deleteFolder={deleteFolder}
-				folders={arrFolders}
-				getCurrentFolderName={props.getCurrentFolderName}
-				setIsCurrentName={setIsCurrentName}
-				setShowModalWindow={setShowModalWindow}
-				setToggleCreateOrEdit={setToggleCreateOrEdit}
-			/>
+		<div className={styles.menu}>
+			<div className={styles.LogoBurger}>
+				<LogoBurger />
+			</div>
+			
+			<div className={styles.folderManager}>
+				<FolderManager
+					deleteFolder={deleteFolder}
+					folders={arrFolders}
+					getCurrentFolderName={props.getCurrentFolderName}
+					setIsCurrentName={setIsCurrentName}
+					setShowModalWindow={setShowModalWindow}
+					setToggleCreateOrEdit={setToggleCreateOrEdit}
+				/>
+			</div>
 			{
 				<ModalBackGround isShowModalBackGround={showModalWindow} onClose={() => setShowModalWindow(false)}>
 					{
@@ -87,7 +94,7 @@ const Menu = (props: IMenu) => {
 					}
 				</ModalBackGround>
 			}
-		</>
+		</div>
 	)
 }
 

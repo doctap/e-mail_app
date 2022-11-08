@@ -1,0 +1,17 @@
+.logoBurger {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	align-items: center;
+
+	.logotype {
+		display: flex;
+		align-items: center;
+
+		.logotypeText {
+			font-weight: 600;
+			font-size: 1.2rem;
+			margin-left: .3rem;
+		}
+	}
+}

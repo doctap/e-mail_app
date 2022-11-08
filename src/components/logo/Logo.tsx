@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import styles from './Logo.module.scss';
 
 export default function Logo() {
-  return (
-	 <div>
-		
-	 </div>
-  )
+	return (
+		<div className={styles.logo}>
+			mail
+		</div>
+	)
 }

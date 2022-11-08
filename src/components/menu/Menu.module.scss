@@ -1,0 +1,16 @@
+.menu {
+	min-width: max-content;
+	width: 20%;
+	height: 100%;
+	
+	.LogoBurger {
+		padding: 0 .8rem 0 .5rem;
+		background: linear-gradient(45deg, rgb(255, 255, 255), rgba(114, 162, 252, 0.342));
+		margin-bottom: 1rem;
+		border-radius: 0 0 30px 0;
+	}
+
+	.folderManager {
+		padding: 0 .5rem;
+	}
+}
