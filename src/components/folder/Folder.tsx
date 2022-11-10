@@ -7,6 +7,7 @@ interface IFolderButton {
 	onClick: (isName: string) => void;
 	onContextMenu: (e: React.MouseEvent<HTMLButtonElement>) => void;
 	isSelected: boolean;
+	icon: JSX.Element;
 }
 
 export default function Folder(props: IFolderButton) {
@@ -23,7 +24,8 @@ export default function Folder(props: IFolderButton) {
 			onClick={getFolderName}
 			name={props.name}
 		>
-			{props.name}
+			<div className={styles.text} children={props.name} />
+			{props.icon}
 		</button>
 	)
 }

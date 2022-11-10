@@ -13,7 +13,7 @@ export default function LogoBurger() {
 				</div>
 			</div>
 			<div>
-				<BurgerButton color='rgb(46, 47, 59)' iconName='menu' onClick={() => 0} fontSize='2rem' />
+				<BurgerButton color='rgba(44, 65, 90)' iconName='menu' onClick={() => 0} fontSize='1.6rem' />
 			</div>
 		</div>
 	)

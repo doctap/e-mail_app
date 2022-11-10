@@ -29,7 +29,7 @@ export default function Message(props: IMessage) {
 				{props.author}
 			</td>
 			<td className={styles.marker}>
-				{props.marker ? 'radio_button_checked' : ' '}
+				{props.marker ? 'label' : ' '}
 			</td>
 			<td className={classModification ? styles.message : `${styles.message} ${styles.message_open}`}>
 				{props.message}
